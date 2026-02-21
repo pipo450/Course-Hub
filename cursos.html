@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursehub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* encabezado */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* otra seccion */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://imgs.search.brave.com/4A0TDu573xReHPHhpOBUXJ6yHnoSh7UM6bRGWeHVhEs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/Y2hpYmktYXJ0LXN0/eWxlLW9mLWphbmUt/ZG9lLWZyb20tenp6/LWJ5LW8yaDItb2g0/LXYwLWVhaWlya2J5/N2c1ZjEuanBlZz93/aWR0aD0xMjg0JmZv/cm1hdD1wanBnJmF1/dG89d2VicCZzPTI2/Y2Q0ODI3NzkxZWI3/YTcwOTAyZmZhNjhj/NjA2YWU5YTU3ZDQx/ZDI') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Slider */
+        .slider-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 500px;
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .slider-nav button {
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 1rem;
+        }
+        
+        .slider-nav button:hover {
+            background: white;
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .slider-dots span {
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .slider-dots span.active {
+            background: var(--secondary);
+        }
+
+        /* --- ESTILOS PARA LA NUEVA SECCIÓN DE CURSOS --- */
+        .courses-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .course-filters {
+            text-align: center;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .course-filters button {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 0.6rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .course-filters button:hover,
+        .course-filters button.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card.hide {
+            display: none;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .course-card:hover .course-img img {
+            transform: scale(1.1);
+        }
+
+        .course-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .course-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        /* caracteristicas */
+        .features {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        /* sobre */
+        .about {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Contactoz*/
+        .contact {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .chatbot-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .bot-message {
+            background: white;
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+        
+        .user-message {
+            background: var(--secondary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .chatbot-input button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .chatbot-input button:hover {
+            background: #2980b9;
+        }
+        
+        /* Pie de pagina */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsiva */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-content {
+                flex: none;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: var(--primary);
+                transition: left 0.3s;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+        /* Menú desplegable para cursos */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            z-index: 1001;
+            top: 100%;
+            left: 0;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--light);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><i class="fas fa-graduation-cap"></i> Coursehub</a>
+            <nav id="nav">
+                <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn"> Nosotros <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#about">Quiénes somos</a>
+                        <a href="#mision">Misión</a>
+                        <a href="#vision">Visión</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#login" title="Iniciar sesión">
+                        <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <section class="slider-section" id="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Te presentamos nuestras recomendaciones</h2>
+            </div>
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://img.freepik.com/foto-gratis/pizarra-llena-ecuaciones-matematicas-avanzadas_1232-2038.jpg" alt="Física y Matemáticas">
+                        <div class="slide-content">
+                            <h3>Área de Ciencias Físicas y Matemáticas</h3>
+                            <p>Explora las leyes del universo y los sistemas lógicos.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://img.freepik.com/foto-gratis/investigadores-que-utilizan-microscopio-avanzado-laboratorio-investigacion-desarrollo-cientificos-que-trabajan-productos-farmaceuticos_482257-25298.jpg" alt="Ciencias Biológicas">
+                        <div class="slide-content">
+                            <h3>Área de Ciencias Biológicas y de la Salud</h3>
+                            <p>Estudia los seres vivos y mejora la salud humana.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://img.freepik.com/foto-gratis/discusion-grupo-terapia-ayudandose-unos-otros_23-2149121960.jpg" alt="Ciencias Sociales">
+                        <div class="slide-content">
+                            <h3>Área de Ciencias Sociales</h3>
+                            <p>Examina la sociedad y las relaciones entre individuos.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://img.freepik.com/foto-gratis/manos-irreconocibles-dibujando-sobre-papel_23-2147770025.jpg" alt="Humanidades y Artes">
+                        <div class="slide-content">
+                            <h3>Área de Humanidades y Artes</h3>
+                            <p>Descubre la cultura, el pensamiento y la expresión creativa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <button id="prevBtn" type="button"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextBtn" type="button"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-section" id="cursos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Todos Nuestros Cursos</h2>
+            </div>
+
+            <div class="course-filters" id="course-filters">
+                <button type="button" class="active" data-filter="all">Todas las áreas</button>
+                <button type="button" data-filter="fisica-matematicas">Ciencias Físico y Matemáticas</button>
+                <button type="button" data-filter="biologicas-salud">Ciencias Biológicas y de la Salud</button>
+                <button type="button" data-filter="sociales">Ciencias Sociales</button>
+                <button type="button" data-filter="humanidades-artes">Humanidades y Artes</button>
+            </div>
+
+                <div class="course-grid" id="course-grid">
+                <div class="course-card" data-category="fisica-matematicas" data-id="calculo-diferencial-integral">
+                    <div class="course-img"><img src="https://1.bp.blogspot.com/-BU6v0bSbG6Y/XHizJuYrpAI/AAAAAAAADk4/8kErUFg_5eQ8ApVLhlq9CTdEUXNZRMNGgCLcBGAs/s1600/CDI.jpg" alt="Cálculo"></div>
+                    <div class="course-content"><h3>Cálculo Diferencial e Integral</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=calculo-diferencial-integral" class="btn">Ver contenido</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas" data-id="algebra-lineal">
+                    <div class="course-img"><img src="https://tse2.mm.bing.net/th/id/OIP.e-C-8bXJmBN4UjGhgaReHwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Álgebra"></div>
+                    <div class="course-content"><h3>Álgebra Lineal</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=algebra-lineal" class="btn">Ver contenido</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas" data-id="fisica-clasica">
+                    <div class="course-img"><img src="https://tse2.mm.bing.net/th/id/OIP.iqqzlgSz2c1S2FqlFKr5bQHaEC?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Física"></div>
+                    <div class="course-content"><h3>Física</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=fisica-clasica" class="btn">Ver contenido</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas" data-id="quimica">
+                    <div class="course-img"><img src="https://quo.mx/wp-content/uploads/2023/09/que-estudia-la-quimica-aplicada.webp" alt="Química"></div>
+                    <div class="course-content"><h3>Química</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=quimica-general" class="btn">Ver contenido</a></div>
+                </div>
+                
+                <div class="course-card" data-category="fisica-matematicas">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/R.798325578ff5f3ba8e647dc2e5c30f3a?rik=HLKdXkEzCyDhXA&riu=http%3a%2f%2f3.bp.blogspot.com%2f-na7ziVujNf0%2fVzyZYpimVGI%2fAAAAAAAAAF0%2fPkdLT3dyvJQxFHswijKPSoQDPoUq1NWnACK4B%2fs1600%2fshutterstock_216867628.jpg&ehk=DWANyryKPalRkjn9qkvd9Qy9mYDfMJTZQCxYkj5Hr8Q%3d&risl=&pid=ImgRaw&r=0" alt="Estadística"></div>
+                    <div class="course-content"><h3>Probabilidad y Estadística</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=probabilidad-y-estadistica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas">
+                    <div class="course-img"><img src="https://tse4.mm.bing.net/th/id/OIP.vktkwhUumOXk-Ao4Y415LAHaFO?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"></div>
+                    <div class="course-content"><h3>Ecuaciones Diferenciales</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=ecuaciones-diferenciales" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas">
+                    <div class="course-img"><img src="https://bahaiteachings.s3.us-west-1.amazonaws.com/2021/08/cover-2021-08-27T144216.835.png" alt="Mecánica Cuántica"></div>
+                    <div class="course-content"><h3>Mecánica Cuántica</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=mecanica-cuantica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="fisica-matematicas">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.XMKSFbqqGH5Amqqm1-B3rwHaEh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Astrofísica"></div>
+                    <div class="course-content"><h3>Astrofísica</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=astrofisica" class="btn">Ver curso</a></div>
+                </div>
+
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.2s57Tb-_-BmoAx0pyw2qqgHaFg?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Biología Celular"></div>
+                    <div class="course-content"><h3>Biología Celular</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=biologia-celular" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.1I2d46wJ3_oMj5U0_kkuDAHaEK?w=305&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Genética"></div>
+                    <div class="course-content"><h3>Genética</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=genetica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.FYE0R7gJ96Q-DVm-bDBRAwHaFf?w=248&h=184&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Anatomía y Fisiología"></div>
+                    <div class="course-content"><h3>Anatomía y Fisiología Humana</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=anatomia-fisiologia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://tse1.mm.bing.net/th/id/OIP.1Xi1njDRWJxtMPGIwaQSyQHaEw?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Bioquímica"></div>
+                    <div class="course-content"><h3>Bioquímica</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=bioquimica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://static.vecteezy.com/system/resources/previews/024/623/114/non_2x/microbes-in-close-up-science-bacteria-biology-microbiology-healthcare-generative-ai-photo.jpg" alt="Microbiología"></div>
+                    <div class="course-content"><h3>Microbiología</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=microbiologia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.hKtakGQXHv7XFtS8V-b5FgHaFc?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Farmacología"></div>
+                    <div class="course-content"><h3>Farmacología</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=farmacologia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="biologicas-salud">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.pWEyeEN7sZHSY184pL3b4AHaD4?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Inmunología"></div>
+                    <div class="course-content"><h3>Inmunología</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=inmunologia" class="btn">Ver curso</a></div>
+                </div>
+
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.19KD5q_QlZA0SAaqOR-JvQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sociología"></div>
+                    <div class="course-content"><h3>Sociología</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=sociologia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.UBcyx3da-EnS4Zvc8l4xDQHaEK?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Psicología General"></div>
+                    <div class="course-content"><h3>Psicología General</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=psicologia-general" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://tse2.mm.bing.net/th/id/OIP.eroFlyiBm0RQMHvfEm8ndAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Economía"></div>
+                    <div class="course-content"><h3>Economía</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=economia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://tse2.mm.bing.net/th/id/OIP.aho_acR1311E2H61bDr6-wHaET?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ciencia Política"></div>
+                    <div class="course-content"><h3>Ciencia Política</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=ciencia-politica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.8_g53qOimqig9OQwoamRLwHaEK?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Antropología"></div>
+                    <div class="course-content"><h3>Antropología</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=antropologia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.gqgWiTwYHfu87qqeZ1e04gHaE8?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3g" alt="Derecho Constitucional"></div>
+                    <div class="course-content"><h3>Derecho Constitucional</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=derecho-constitucional" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.AJ1RdSTlJEfUMkyhIWZuUwHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Relaciones Internacionales"></div>
+                    <div class="course-content"><h3>Relaciones Internacionales</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=relaciones-internacionales" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="sociales">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.evw4n7kbd8tfvjKyy1nQnwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Psicología Clínica"></div>
+                    <div class="course-content"><h3>Psicología Clínica</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=psicologia-clinica" class="btn">Ver curso</a></div>
+                </div>
+
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.yAu83KinLvKbZEunThk-bwHaE7?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Filosofía"></div>
+                    <div class="course-content"><h3>Filosofía</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=filosofia" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/R.7648f2e6305288278fa8645c38c4d206?rik=P28Ol6%2fP3npyVA&pid=ImgRaw&r=0" alt="Historia Universal"></div>
+                    <div class="course-content"><h3>Historia Universal</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=historia-universal" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://tse3.mm.bing.net/th/id/OIP.TktTE6xqTpoEkiblbp10_wHaE6?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Literatura"></div>
+                    <div class="course-content"><h3>Literatura</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=literatura" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://definicion.de/wp-content/uploads/2008/03/decision.png" alt="Ética"></div>
+                    <div class="course-content"><h3>Ética</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=etica" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/OIP.ml8RYcA3mDAnenlanEtqhwHaFZ?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Historia del Arte"></div>
+                    <div class="course-content"><h3>Historia del Arte</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=historia-del-arte" class="btn">Ver curso</a></div>
+                </div>
+                <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://th.bing.com/th/id/R.ccdf693db062cf3565ef9b1966acfb43?rik=4KvaCC8VCu2Wbg&pid=ImgRaw&r=0" alt="Lingüística"></div>
+                    <div class="course-content"><h3>Lingüística</h3><p>Con Certificado - Precio: $1,200</p><a href="materia.html?id=linguistica" class="btn">Ver curso</a></div>
+                </div>
+                 <div class="course-card" data-category="humanidades-artes">
+                    <div class="course-img"><img src="https://tse1.mm.bing.net/th/id/OIP.ZX08yEQy47e4MXettaA5GQHaD4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Crítica Literaria"></div>
+                    <div class="course-content"><h3>Crítica Literaria</h3><p>Sin Certificado - Gratuito</p><a href="materia.html?id=critica-literaria" class="btn">Ver curso</a></div>
+                </div>
+                </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Acerca de</h3>
+                    <p>Coursehub es la plataforma líder en educación en línea, con la misión de democratizar el conocimiento y empoderar a estudiantes de todo el mundo.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/isack.chaz.2025?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+                        <a href="aqui el link"><i class="fab fa-twitter"></i></a>
+                        <a href="aqui el link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="aqui el link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#solutions">Soluciones</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Patrocinadores</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.ellucian.com/es">Ellucian</a></li>
+                        <li><a href="https://www.syntax.com/es-es/">ASyntax</a></li>
+                        <li><a href="https://mlh.io/">Major League Hacking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>noticias 31 minutos</h3>
+                    <p>me quede sin ideas pero por aca que se suscriban y den like</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" class="form-control">
+                        <button type="submit" class="btn">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Zapato solucions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js" defer>
+
+    </script>
+</body>
+</html>

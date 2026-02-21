@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f7fafd;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+    }
+    header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 1rem 0;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .header-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo i {
+      color: #3498db;
+      font-size: 2rem;
+    }
+    .nav-btns {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-btns button {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 22px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #3498db22;
+    }
+    .nav-btns button:hover {
+      background: #217dbb;
+    }
+    .main-container {
+      max-width: 480px;
+      margin: 110px auto 0 auto;
+      background: #fff;
+      padding: 32px 20px 20px 20px;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #2c3e5012, 0 1.5px 8px #0002;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 2.1em;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .chat-box {
+      background: #f5f8fa;
+      border-radius: 10px;
+      padding: 16px 10px 10px 10px;
+      min-height: 220px;
+      max-height: 320px;
+      overflow-y: auto;
+      margin-bottom: 18px;
+      box-shadow: 0 0 8px #2c3e5012;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bubble {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 18px;
+      max-width: 80%;
+      word-break: break-word;
+      font-size: 1em;
+      margin-bottom: 2px;
+      box-shadow: 0 0 8px #3498db22;
+    }
+    .bubble.user {
+      background: linear-gradient(90deg, #3498db 60%, #0057ff 100%);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 0 12px #3498db44;
+    }
+    .bubble.gemini {
+      background: #eaf3fa;
+      color: #217dbb;
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+      border: 1.5px solid #3498db33;
+    }
+    form {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+    textarea {
+      flex: 1;
+      height: 48px;
+      border-radius: 8px;
+      border: 1.5px solid #3498db99;
+      background: #f5f8fa;
+      color: #2c3e50;
+      font-size: 1em;
+      padding: 10px;
+      resize: none;
+      outline: none;
+      box-shadow: 0 0 8px #3498db11;
+      transition: border 0.2s;
+    }
+    textarea:focus {
+      border: 2px solid #3498db;
+    }
+    button[type="submit"] {
+      min-width: 90px;
+      padding: 0 18px;
+      background: linear-gradient(90deg, #3498db 60%, #0057ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 8px #3498db33;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    button[type="submit"]:disabled {
+      background: #ccc;
+      color: #fff;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    ::selection {
+      background: #3498db33;
+    }
+    @media (max-width: 700px) {
+      .main-container { max-width: 99vw; padding: 10px; }
+      .chat-box { min-height: 120px; max-height: 200px; }
+      .header-container { width: 98vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo"><i class="fas fa-graduation-cap"></i> Coursehub</a>
+      <div class="nav-btns">
+        <button onclick="window.location.href='index.html'">Inicio</button>
+        <button onclick="window.location.href='cursos.html'">Cursos</button>
+      </div>
+    </div>
+  </header>
+  <div class="main-container">
+    <h1>Examen Vocacional</h1>
+    <div class="chat-box" id="chat-box"></div>
+    <form id="chat-form" autocomplete="off">
+      <textarea id="prompt" placeholder="Escribe tu mensaje..."></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById('chat-form');
+    const promptInput = document.getElementById('prompt');
+    const chatBox = document.getElementById('chat-box');
+
+    // Historial de mensajes
+    let messages = [];
+
+    // Mensaje de bienvenida automático de Gemini
+    window.addEventListener('DOMContentLoaded', () => {
+      addMessage('Hola, soy Gemini y haremos tu evaluación vocacional. ¿Estás listo?', 'model');
+      messages.push({ role: 'model', text: 'Hola, soy Gemini y haremos tu evaluación vocacional. ¿Estás listo?' });
+    });
+
+    function addMessage(text, sender, addToHistory = true) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble ' + (sender === 'model' ? 'gemini' : sender);
+      bubble.textContent = text;
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      if (addToHistory && text && text !== 'Cargando...') {
+        messages.push({ role: sender, text });
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const prompt = promptInput.value.trim();
+      if (!prompt) return;
+      addMessage(prompt, 'user');
+      promptInput.value = '';
+      promptInput.disabled = true;
+      form.querySelector('button').disabled = true;
+      addMessage('Cargando...', 'model', false);
+      try {
+        // Construir historial para el backend
+        const history = messages
+          .filter(m => m.role === 'user' || m.role === 'model')
+          .map(m => ({ role: m.role, text: m.text }));
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ history })
+        });
+        const data = await res.json();
+        // Elimina el mensaje "Cargando..."
+        chatBox.removeChild(chatBox.lastChild);
+        if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+          const respuesta = data.candidates[0].content.parts.map(p => p.text).join('\n');
+          addMessage(respuesta, 'model');
+        } else if (data.error) {
+          addMessage('Error: ' + (data.error.message || JSON.stringify(data.error)), 'model');
+        } else {
+          addMessage('Respuesta inesperada.', 'model');
+        }
+      } catch (err) {
+        chatBox.removeChild(chatBox.lastChild);
+        addMessage('Error de conexión.', 'model');
+      }
+      promptInput.disabled = false;
+      form.querySelector('button').disabled = false;
+      promptInput.focus();
+    });
+  </script>
+</body>
+</html>

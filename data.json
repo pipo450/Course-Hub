@@ -1,0 +1,223 @@
+[
+    {
+        "id": "calculo-diferencial-integral",
+        "titulo": "Cálculo Diferencial e Integral",
+        "imagen": "https://1.bp.blogspot.com/-BU6v0bSbG6Y/XHizJuYrpAI/AAAAAAAADk4/8kErUFg_5eQ8ApVLhlq9CTdEUXNZRMNGgCLcBGAs/s1600/CDI.jpg",
+        "descripcionLarga": "Este curso te introduce a los conceptos fundamentales del cálculo. Aprenderás sobre límites, derivadas e integrales, herramientas esenciales para modelar y resolver problemas en ciencia, ingeniería y economía.",
+        "temas": ["Límites y Continuidad", "Reglas de Derivación", "Aplicaciones de la Derivada", "Integrales y el Teorema Fundamental del Cálculo", "Técnicas de Integración"]
+    },
+    {
+        "id": "algebra-lineal",
+        "titulo": "Álgebra Lineal",
+        "imagen": "https://tse2.mm.bing.net/th/id/OIP.e-C-8bXJmBN4UjGhgaReHwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Explora el mundo de los vectores, matrices y espacios vectoriales. El álgebra lineal es la base de disciplinas como la inteligencia artificial, la computación gráfica y la estadística.",
+        "temas": ["Sistemas de Ecuaciones Lineales", "Vectores y Matrices", "Espacios Vectoriales", "Transformaciones Lineales", "Valores y Vectores Propios"]
+    },
+    {
+        "id": "fisica-clasica",
+        "titulo": "Física",
+        "imagen": "https://tse2.mm.bing.net/th/id/OIP.iqqzlgSz2c1S2FqlFKr5bQHaEC?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Descubre las leyes que gobiernan el universo a escala macroscópica, desde el movimiento de los planetas hasta el comportamiento de las ondas. Este curso cubre la mecánica newtoniana, la termodinámica y el electromagnetismo.",
+        "temas": ["Cinemática y Dinámica", "Leyes de Newton", "Trabajo y Energía", "Termodinámica Básica", "Ondas y Óptica"]
+    },
+    {
+        "id": "quimica-general",
+        "titulo": "Química",
+        "imagen": "https://img.freepik.com/vector-gratis/ilustracion-vector-personaje-dibujos-animados-aislado-quimica-organica-abstracta-quimica-experimento-cientifico-laboratorio-quimico-investigacion-desarrollo-composicion-formula-clase-universidad_335657-4183.jpg",
+        "descripcionLarga": "Un curso introductorio a la ciencia de la materia, sus propiedades, estructura y las reacciones que la transforman. Aprende sobre la tabla periódica, enlaces químicos y estequiometría.",
+        "temas": ["Estructura Atómica", "Tabla Periódica", "Enlaces Químicos", "Reacciones y Estequiometría", "Química Orgánica Introductoria"]
+    },
+    {
+        "id": "probabilidad-y-estadistica",
+        "titulo": "Probabilidad y Estadística",
+        "imagen": "https://th.bing.com/th/id/R.798325578ff5f3ba8e647dc2e5c30f3a?rik=HLKdXkEzCyDhXA&riu=http%3a%2f%2f3.bp.blogspot.com%2f-na7ziVujNf0%2fVzyZYpimVGI%2fAAAAAAAAAF0%2fPkdLT3dyvJQxFHswijKPSoQDPoUq1NWnACK4B%2fs1600%2fshutterstock_216867628.jpg&ehk=DWANyryKPalRkjn9qkvd9Qy9mYDfMJTZQCxYkj5Hr8Q%3d&risl=&pid=ImgRaw&r=0g",
+        "descripcionLarga": "Aprende a interpretar datos, entender la incertidumbre y tomar decisiones informadas. Este curso es fundamental para la ciencia de datos, las finanzas y la investigación científica.",
+        "temas": ["Estadística Descriptiva", "Teoría de la Probabilidad", "Distribuciones de Probabilidad", "Inferencia Estadística", "Regresión Lineal"]
+    },
+    {
+        "id": "ecuaciones-diferenciales",
+        "titulo": "Ecuaciones Diferenciales",
+        "imagen": "https://tse4.mm.bing.net/th/id/OIP.vktkwhUumOXk-Ao4Y415LAHaFO?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Modela sistemas dinámicos y fenómenos de cambio a través de ecuaciones que relacionan funciones con sus derivadas. Un curso avanzado esencial para la física, ingeniería y biología de sistemas.",
+        "temas": ["Ecuaciones de Primer Orden", "Ecuaciones Lineales de Orden Superior", "Transformadas de Laplace", "Sistemas de Ecuaciones Diferenciales", "Soluciones en Series"]
+    },
+    {
+        "id": "mecanica-cuantica",
+        "titulo": "Mecánica Cuántica",
+        "imagen": "https://bahaiteachings.s3.us-west-1.amazonaws.com/2021/08/cover-2021-08-27T144216.835.png",
+        "descripcionLarga": "Adéntrate en el extraño y fascinante mundo de las partículas subatómicas. Este curso avanzado explora los principios que rigen el comportamiento de la materia y la energía a la escala más pequeña.",
+        "temas": ["Función de Onda", "Ecuación de Schrödinger", "Principio de Incertidumbre", "Spin Cuántico", "Átomo de Hidrógeno"]
+    },
+    {
+        "id": "astrofisica",
+        "titulo": "Astrofísica",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.XMKSFbqqGH5Amqqm1-B3rwHaEh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Aplica los principios de la física para entender el origen, la evolución y el comportamiento de los objetos celestes como estrellas, galaxias y agujeros negros.",
+        "temas": ["Mecánica Celeste", "Evolución Estelar", "Cosmología", "Galaxias y Cúmulos", "Materia Oscura y Energía Oscura"]
+    },
+    {
+        "id": "biologia-celular",
+        "titulo": "Biología Celular",
+        "imagen": "https://th.bing.com/th/id/OIP.2s57Tb-_-BmoAx0pyw2qqgHaFg?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Explora la unidad fundamental de la vida: la célula. Estudia su estructura, sus orgánulos y los complejos procesos que permiten la vida, como la replicación y la comunicación celular.",
+        "temas": ["Membrana Plasmática", "Citoesqueleto", "Ciclo Celular", "Metabolismo Energético", "Señalización Celular"]
+    },
+    {
+        "id": "genetica",
+        "titulo": "Genética",
+        "imagen": "https://th.bing.com/th/id/OIP.1I2d46wJ3_oMj5U0_kkuDAHaEK?w=305&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        "descripcionLarga": "Estudia los genes, la herencia y la variación en los organismos vivos. Desde las leyes de Mendel hasta la ingeniería genética, este curso cubre los fundamentos de cómo se transmite la información biológica.",
+        "temas": ["Genética Mendeliana", "Bases Moleculares de la Herencia", "Mutación y Reparación del ADN", "Ingeniería Genética", "Genética de Poblaciones"]
+    },
+    {
+        "id": "anatomia-fisiologia",
+        "titulo": "Anatomía y Fisiología Humana",
+        "imagen": "https://th.bing.com/th/id/OIP.FYE0R7gJ96Q-DVm-bDBRAwHaFf?w=248&h=184&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        "descripcionLarga": "Un viaje detallado a través del cuerpo humano. Aprende sobre la estructura (anatomía) y la función (fisiología) de los sistemas que nos mantienen vivos, desde el esquelético hasta el nervioso.",
+        "temas": ["Sistema Tegumentario", "Sistema Nervioso", "Sistema Cardiovascular", "Sistema Respiratorio", "Sistema Digestivo"]
+    },
+    {
+        "id": "bioquimica",
+        "titulo": "Bioquímica",
+        "imagen": "https://tse1.mm.bing.net/th/id/OIP.1Xi1njDRWJxtMPGIwaQSyQHaEw?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Investiga los procesos químicos que ocurren dentro de los seres vivos. Este curso se centra en la estructura y función de macromoléculas como proteínas, lípidos y ácidos nucleicos.",
+        "temas": ["Aminoácidos y Proteínas", "Enzimas y Cinética Enzimática", "Metabolismo de Carbohidratos", "Ciclo de Krebs", "Bioenergética"]
+    },
+    {
+        "id": "microbiologia",
+        "titulo": "Microbiología",
+        "imagen": "https://static.vecteezy.com/system/resources/previews/024/623/114/non_2x/microbes-in-close-up-science-bacteria-biology-microbiology-healthcare-generative-ai-photo.jpg",
+        "descripcionLarga": "Descubre el mundo invisible de los microorganismos. Estudia bacterias, virus, hongos y protozoos, su impacto en la salud humana y su papel crucial en los ecosistemas.",
+        "temas": ["Estructura Bacteriana", "Metabolismo Microbiano", "Virología", "Micología", "Microbiología Ambiental"]
+    },
+    {
+        "id": "farmacologia",
+        "titulo": "Farmacología",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.hKtakGQXHv7XFtS8V-b5FgHaFc?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Un curso avanzado que estudia cómo los fármacos interactúan con los sistemas biológicos. Aprende sobre farmacocinética (lo que el cuerpo le hace al fármaco) y farmacodinamia (lo que el fármaco le hace al cuerpo).",
+        "temas": ["Principios de Acción de Fármacos", "Farmacocinética", "Farmacodinamia", "Toxicología", "Desarrollo de Fármacos"]
+    },
+    {
+        "id": "inmunologia",
+        "titulo": "Inmunología",
+        "imagen": "https://th.bing.com/th/id/OIP.pWEyeEN7sZHSY184pL3b4AHaD4?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Estudia el sistema de defensa del cuerpo contra los patógenos. Este curso avanzado cubre la inmunidad innata y adaptativa, los anticuerpos, las vacunas y los trastornos inmunitarios.",
+        "temas": ["Inmunidad Innata", "Inmunidad Adaptativa", "Anticuerpos y Antígenos", "Sistema del Complemento", "Inmunopatologías"]
+    },
+    {
+        "id": "sociologia",
+        "titulo": "Sociología",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.19KD5q_QlZA0SAaqOR-JvQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Analiza la estructura, el funcionamiento y el desarrollo de la sociedad humana. Examina las instituciones sociales, la desigualdad, la cultura y la interacción social.",
+        "temas": ["Teoría Sociológica", "Estratificación Social", "Cultura y Sociedad", "Instituciones Sociales", "Cambio Social"]
+    },
+    {
+        "id": "psicologia-general",
+        "titulo": "Psicología General",
+        "imagen": "https://th.bing.com/th/id/OIP.UBcyx3da-EnS4Zvc8l4xDQHaEK?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Una introducción al estudio científico de la mente y el comportamiento. Explora temas como la percepción, la memoria, el aprendizaje, la motivación y la personalidad.",
+        "temas": ["Bases Biológicas del Comportamiento", "Sensación y Percepción", "Aprendizaje y Memoria", "Motivación y Emoción", "Psicología Social"]
+    },
+    {
+        "id": "economia",
+        "titulo": "Economía",
+        "imagen": "https://tse2.mm.bing.net/th/id/OIP.eroFlyiBm0RQMHvfEm8ndAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Estudia cómo las sociedades gestionan sus recursos escasos. Este curso introduce los principios de la microeconomía (decisiones individuales) y la macroeconomía (agregados económicos).",
+        "temas": ["Oferta y Demanda", "Teoría del Consumidor", "Estructuras de Mercado", "Macroeconomía: PBI y Desempleo", "Política Monetaria y Fiscal"]
+    },
+    {
+        "id": "ciencia-politica",
+        "titulo": "Ciencia Política",
+        "imagen": "https://tse2.mm.bing.net/th/id/OIP.aho_acR1311E2H61bDr6-wHaET?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Analiza los sistemas de gobierno, el poder y el comportamiento político. Compara diferentes regímenes políticos y explora las teorías sobre el estado y la democracia.",
+        "temas": ["Teoría Política", "Política Comparada", "Relaciones Internacionales", "Administración Pública", "Comportamiento Electoral"]
+    },
+    {
+        "id": "antropologia",
+        "titulo": "Antropología",
+        "imagen": "https://th.bing.com/th/id/OIP.8_g53qOimqig9OQwoamRLwHaEK?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "El estudio holístico de la humanidad. Explora la diversidad cultural, los orígenes humanos y la biología de nuestra especie a través del tiempo y el espacio.",
+        "temas": ["Antropología Cultural", "Antropología Biológica", "Arqueología", "Antropología Lingüística", "Etnografía"]
+    },
+    {
+        "id": "derecho-constitucional",
+        "titulo": "Derecho Constitucional",
+        "imagen": "https://th.bing.com/th/id/OIP.gqgWiTwYHfu87qqeZ1e04gHaE8?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3g",
+        "descripcionLarga": "Un curso avanzado que analiza la ley fundamental de un Estado. Estudia la estructura del gobierno, la división de poderes y los derechos y libertades fundamentales de los ciudadanos.",
+        "temas": ["Teoría de la Constitución", "Control de Constitucionalidad", "Derechos Fundamentales", "Organización del Poder", "Federalismo"]
+    },
+    {
+        "id": "relaciones-internacionales",
+        "titulo": "Relaciones Internacionales",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.AJ1RdSTlJEfUMkyhIWZuUwHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Examina la compleja red de interacciones entre estados, organizaciones internacionales y actores no estatales en el escenario mundial. Analiza temas como la guerra, la diplomacia y la economía global.",
+        "temas": ["Teorías de RRII", "Seguridad Internacional", "Derecho Internacional Público", "Economía Política Internacional", "Organizaciones Internacionales"]
+    },
+    {
+        "id": "psicologia-clinica",
+        "titulo": "Psicología Clínica",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.evw4n7kbd8tfvjKyy1nQnwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Un campo avanzado enfocado en el diagnóstico y tratamiento de trastornos mentales, emocionales y de comportamiento. Aprende sobre evaluación psicológica y las principales corrientes psicoterapéuticas.",
+        "temas": ["Psicopatología", "Evaluación Psicológica", "Modelos Terapéuticos", "Psicofarmacología", "Ética Profesional"]
+    },
+    {
+        "id": "filosofia",
+        "titulo": "Filosofía",
+        "imagen": "https://th.bing.com/th/id/OIP.yAu83KinLvKbZEunThk-bwHaE7?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Explora las preguntas fundamentales sobre la existencia, el conocimiento, los valores, la razón y la mente. Este curso introduce las principales ramas de la filosofía y a sus pensadores más influyentes.",
+        "temas": ["Metafísica", "Epistemología", "Ética y Moral", "Lógica", "Filosofía Política"]
+    },
+    {
+        "id": "historia-universal",
+        "titulo": "Historia Universal",
+        "imagen": "https://th.bing.com/th/id/R.7648f2e6305288278fa8645c38c4d206?rik=P28Ol6%2fP3npyVA&pid=ImgRaw&r=0",
+        "descripcionLarga": "Un recorrido por los eventos, civilizaciones y procesos que han dado forma al mundo en que vivimos, desde las primeras sociedades humanas hasta la era global contemporánea.",
+        "temas": ["Civilizaciones Antiguas", "Edad Media", "Renacimiento y Reforma", "La Era de las Revoluciones", "El Mundo Contemporáneo"]
+    },
+    {
+        "id": "literatura",
+        "titulo": "Literatura",
+        "imagen": "https://tse3.mm.bing.net/th/id/OIP.TktTE6xqTpoEkiblbp10_wHaE6?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Analiza las grandes obras escritas de la humanidad. Aprende a interpretar textos, entender los géneros literarios y explorar cómo la literatura refleja y moldea la cultura.",
+        "temas": ["Teoría Literaria", "Poesía", "Narrativa", "Teatro", "Ensayo"]
+    },
+    {
+        "id": "etica",
+        "titulo": "Ética",
+        "imagen": "https://definicion.de/wp-content/uploads/2008/03/decision.png",
+        "descripcionLarga": "Una rama de la filosofía que reflexiona sobre los principios morales que guían el comportamiento humano. Examina qué es el bien, la justicia y el deber en la vida personal y social.",
+        "temas": ["Ética Normativa", "Metaética", "Ética Aplicada", "Teorías de la Justicia", "Dilemas Morales"]
+    },
+    {
+        "id": "historia-del-arte",
+        "titulo": "Historia del Arte",
+        "imagen": "https://th.bing.com/th/id/OIP.ml8RYcA3mDAnenlanEtqhwHaFZ?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Estudia la evolución de la expresión visual a través del tiempo y las culturas. Analiza pinturas, esculturas y arquitectura desde la prehistoria hasta el arte contemporáneo.",
+        "temas": ["Arte Antiguo y Clásico", "Arte Medieval", "Renacimiento y Barroco", "Modernismo y Vanguardias", "Arte Contemporáneo"]
+    },
+    {
+        "id": "linguistica",
+        "titulo": "Lingüística",
+        "imagen": "https://th.bing.com/th/id/R.ccdf693db062cf3565ef9b1966acfb43?rik=4KvaCC8VCu2Wbg&pid=ImgRaw&r=0",
+        "descripcionLarga": "Un campo avanzado que realiza el estudio científico del lenguaje. Descompone el lenguaje en sus componentes (sonidos, palabras, oraciones) y analiza su estructura, significado y uso.",
+        "temas": ["Fonética y Fonología", "Morfología y Sintaxis", "Semántica y Pragmática", "Sociolingüística", "Psicolingüística"]
+    },
+    {
+        "id": "critica-literaria",
+        "titulo": "Crítica Literaria",
+        "imagen": "https://tse1.mm.bing.net/th/id/OIP.ZX08yEQy47e4MXettaA5GQHaD4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "descripcionLarga": "Una disciplina avanzada dedicada al análisis, interpretación y evaluación de las obras literarias. Aprende a aplicar diferentes marcos teóricos para desentrañar el significado de los textos.",
+        "temas": ["Formalismo y Estructuralismo", "Crítica Marxista", "Psicoanálisis y Literatura", "Estudios de Género", "Deconstrucción"]
+    }
+]
+
+,
+"usuarios": [
+  {
+ "nombre_completo": "Juan Pérez",
+ "correo_electronico": "juan.perez@example.com",
+ "edad": 25,
+ "genero": "Masculino",
+ "estado": "México",
+ "numero_celular": "5512345678"
+  }]

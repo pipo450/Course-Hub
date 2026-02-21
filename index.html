@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursehub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #43494a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* encabezado */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.0rem;
+            cursor: pointer;
+        }
+
+        /* otra seccion */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('logo.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Slider */
+        .slider-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 25%;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 500px;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .slider-nav button {
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 1rem;
+        }
+
+        .slider-nav button:hover {
+            background: white;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .slider-dots span {
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .slider-dots span.active {
+            background: var(--secondary);
+        }
+
+        /* caracteristicas */
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+        /*video */
+        .video-section {
+       display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+
+}
+.video-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    background: #000;
+}
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+        }
+
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* sobre */
+        .about {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Contactoz*/
+        .contact {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            font-size: 2.0rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chatbot-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 30px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background: white;
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .user-message {
+            background: var(--secondary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .chatbot-input button:hover {
+            background: #2980b9;
+        }
+        /* Vision y Mision */
+        .vision-mision-section {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+        .vm-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .vm-image img {
+            width: 320px;
+            max-width: 90vw;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            object-fit: cover;
+        }
+        .vm-content {
+            flex: 1;
+            min-width: 250px;
+        }
+        .vm-content h2 {
+            color: var(--primary, #2d6cdf);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .vm-content p {
+            font-size: 1.15rem;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* Pie de pagina */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /*vision y mision */
+        @media (max-width: 800px) {
+            .vm-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .vm-image img {
+                margin-bottom: 1.5rem;
+            }
+        }
+        /* Responsiva */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+
+            .about-img, .about-content {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: var(--primary);
+                transition: left 0.3s;
+                z-index: 999;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .slide-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+        /* Menú desplegable para cursos */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            z-index: 1001;
+            top: 100%;
+            left: 0;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--light);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Modal/Popup para Login */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            width: 95%;
+            max-width: 650px;
+            min-width: 320px;
+            min-height: 420px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 700px) {
+            .modal-content {
+                max-width: 98vw;
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 600px) {
+            #registerForm {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem 2rem;
+            }
+            #registerForm .form-group {
+                margin-bottom: 0.5rem;
+            }
+            #registerForm button[type="submit"] {
+                grid-column: 1 / -1;
+                margin-top: 1rem;
+            }
+        }
+
+        #registerModal .modal-footer,
+        #registerModal .modal-header,
+        #registerModal .modal-form,
+        #registerModal .btn {
+            grid-column: 1 / -1;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2.0rem;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .modal-form .form-control {
+            border-radius: 5px;
+        }
+
+        .modal-form .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .modal-footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Accessibility controls */
+        .accessibility-controls {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accessibility-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .accessibility-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .accessibility-btn.active {
+            background: var(--secondary);
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .language-selector select {
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+        }
+
+        /* Focus styles for accessibility */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link for screen readers -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo"><i class="fas fa-graduation-cap"></i> <span class="logo-text">Coursehub</span></a>
+            <nav id="nav">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn"><span class="nav-text">Cursos</span> <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="cursos.html">Todos los cursos</a>
+                            <a href="#curso2">Ciencias Exactas</a>
+                            <a href="#curso3">Ciencias Fisicas y Matematicas</a>
+                            <a href="#curso3">Ciencias biologicas y de la salud</a>
+                            <a href="#curso3">Ciencias sociales</a>
+                            <a href="#curso3">Humanidades y Artes</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn"><span class="nav-text">Nosotros</span> <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#about">Quiénes somos</a>
+                            <a href="#vision">Misión/Visión</a>
+                            <a href="#contact">Contactanos</a>
+                        </div>
+                    </li>
+                    <li class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <select id="languageSelector">
+                            <option value="es">ES</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </li>
+                    <li>
+                        <a href="#" id="loginBtn" title="Iniciar sesión">
+                            <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Accessibility controls -->
+    <div class="accessibility-controls">
+        <button class="accessibility-btn" id="readPageBtn" title="Leer página en voz alta">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <button class="accessibility-btn" id="stopReadingBtn" title="Detener lectura" style="display: none;">
+            <i class="fas fa-stop"></i>
+        </button>
+    </div>
+
+    <main id="main-content">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">Coursehub</h1>
+                <p class="hero-subtitle">Pensando en tu futuro</p>
+                <div class="btn-group">
+                    <center> <a href="http://localhost:3000/chat.html" class="btn">Presentar Examen</a> </center>
+                </div>
+            </div>
+        </section>
+
+        <section class="slider-section" id="solutions">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nuestros cursos</h2>
+                </div>
+                <div class="slider-container">
+                    <div class="slider" id="slider">
+                        <div class="slide">
+                            <img src="https://www.gaceta.udg.mx/wp-content/uploads/2022/09/Captura-de-Pantalla-2022-09-26-a-las-9.58.54-1024x672.png" alt="Estudiantes en un aula de matemáticas">
+                            <div class="slide-content">
+                                <h3>Matematicas</h3>
+                                <p>Sientete comodo y a gusto en nuestros cursos matematicos</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://www.artemarcialonline.com/wp-content/uploads/2023/06/tecnico-superior-en-ilustracion-como-convertirse-en-un-experto-en-artes-plasticas-y-diseno-768x407.jpg" alt="Estudiante trabajando en una obra de arte">
+                            <div class="slide-content">
+                                <h3>Artes</h3>
+                                <p> Sientete libre y expresate en nuestros cursos de artes</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://habvaco.com.mx/wp-content/uploads/2023/07/CursosOnLine-min-1.webp" alt="Personas tomando cursos en línea">
+                            <div class="slide-content">
+                                <h3>Mas de 50 cursos gratuitos</h3>
+                                <p>Estudia y especializate en uno de nuestros mas de 50 cursos gratuitos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="slider-dots" id="sliderDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espacio para el video -->
+        <section class="video-section" id="video">
+            <div class="section-title">
+               <h2 style="text-align: center; margin-bottom: 1rem;">
+                    Mira una de nuestras clases muestra!
+                </h2>
+            </div>
+            <div class="video-container">
+                <!-- Puedes reemplazar el src con el link de tu video -->
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/J99_mHqde8U" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h3 style="text-align: center;">
+                        "No tuve la oportunidad de entrar este año a la universidad pero gracias a Coursehub, no me quedo atras" - Anonimo
+                    </h3>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://www.anmys.com/n01/2017-08-21-01.jpg" alt="Estudiantes graduándose">
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3>Nuevos usuario </h3>
+                            <p>Mas de 30 usuarios nuevos cada dia</p>
+                            <p>Cada dia llegamos a mas gente y les ayudamos a cumplir sus metas con nuestros cursos gratuitos.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://assets.entrepreneur.com/content/3x2/2000/1673382804-GettyImages-1384110533.jpg" alt="Persona estudiando en línea">
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Mas oportunidades</h3>
+                            <p>Estudia mas y mejora todas tus oportunidades</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRys3UYkvgJpzWHeIpJOeEMa-8N9Qx12XzovQ&s" alt="Manos sosteniendo un corazón">
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Apoyanos</h3>
+                            <p>Dale a mas gente la oportunidad de alcanzar sus metas</p>
+                            <a href="un link" class="btn">Hacer una donación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-container">
+                    <div class="about-img">
+                     <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/4225/production/_115333961_gettyimages-1218813156.jpg.webp" alt="Equipo de Coursehub trabajando">
+                    </div>
+                    <div class="about-content">
+                        <h2>¿Quiénes Somos?</h2>
+                        <p>Coursehub nos importa tu futuro</p>
+                        <p>Apoyamos la iniciativa de la educacion gratuita otorgando mas de 50 cursos totalmente gratuitos y con validación universitaria </p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">50</div>
+                                <div class="stat-text">Cursos disponibles</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100</div>
+                                <div class="stat-text">Instructores expertos</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15</div>
+                                <div class="stat-text">Áreas de conocimiento</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-mision-section" id="vision">
+            <div class="vm-container">
+                <div class="vm-image">
+                    <img src="https://cdn.forbes.com.mx/2016/09/ruben-1.jpg" alt="Visión de Coursehub" />
+                </div>
+                <div class="vm-content">
+                    <h2>Visión</h2>
+                    <p>
+                        Ser la plataforma líder en educación digital, inspirando a millones de personas a alcanzar su máximo potencial a través de experiencias de aprendizaje innovadoras, inclusivas y accesibles para todos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-mision-section" id="mision">
+            <div class="vm-container">
+                <div class="vm-image">
+                    <img src="https://p0.piqsels.com/preview/778/191/702/graduation-achievement-student.jpg" alt="Misión de Coursehub" />
+                </div>
+                <div class="vm-content">
+                    <h2>Misión</h2>
+                    <p>
+                        Democratizar el acceso a la educación de calidad, brindando herramientas, recursos y acompañamiento para que cada persona pueda aprender, crecer y transformar su vida y su entorno.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contáctanos</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Dirección</h3>
+                                <p>Autop. Atlixco Puebla, Reserva Territorial Atlixcáyotl, Corredor Comercial Desarrollo Atlixcayotl, 72460 Heroica Puebla de Zaragoza, Pue.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Teléfono</h3>
+                                <p>(+52)2225231294</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>isackchazari@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Horario</h3>
+                                <p>Lunes a Sabado 9:00 am - 10:00 pm </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Asunto</label>
+                                <input type="text" id="subject" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensaje</label>
+                                <textarea id="message" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="chatbot-container">
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Asistente Virtual </h3>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    ¡Hola! Soy el asistente virtual de Coursehub. ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+ <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close-btn" id="closeModalBtn">&times;</span>
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+            </div>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="loginEmail">Correo Electrónico</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn">Acceder</button>
+            </form>
+            <div class="modal-footer">
+                <p data-translate="noAccount">¿No tienes una cuenta? <a href="#" id="showRegister" data-translate="register">Regístrate</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-content">
+            <span class="modal-close-btn" id="closeRegisterBtn">&times;</span>
+            <div class="modal-header">
+                <h2>Registro</h2>
+            </div>
+            <form class="modal-form" id="registerForm" method="post" action="/registrar-usuario">
+                <div class="form-group">
+                    <label for="regName">Nombre completo</label>
+                    <input type="text" id="regName" class="form-control" required name="nombre_completo">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Correo electrónico</label>
+                    <input type="email" id="regEmail" class="form-control" required name="correo_electronico">
+                </div>
+                <div class="form-group">
+                    <label for="regAge">Edad</label>
+                    <input type="number" id="regAge" class="form-control" min="1" required name="edad">
+                </div>
+                <div class="form-group">
+                    <label for="regGender">Género</label>
+                    <select id="regGender" class="form-control" required>
+                        <option value="">Selecciona</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                        <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                    </select>
+					 <input type="hidden" name="genero" id="hiddenRegGender">
+                </div>
+                <div class="form-group">
+                    <label for="regState">Estado</label>
+                    <input type="text" id="regState" class="form-control" required name="estado">
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Número de teléfono</label>
+                    <input type="tel" id="regPhone" class="form-control" required name="numero_celular">
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+            <div style="text-align:center; margin: 1.5rem 0 0.5rem 0;">
+                <span style="color:#888;">O regístrate con</span>
+            </div>
+            <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
+                <a href="#" title="Microsoft" style="font-size:1.8rem; color:#0078D4;"><i class="fab fa-microsoft"></i></a>
+                <a href="#" title="Facebook" style="font-size:1.8rem; color:#1877f3;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Google" style="font-size:1.8rem; color:#ea4335;"><i class="fab fa-google"></i></a>
+            </div>
+            <div class="modal-footer">
+                <p>¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Coursehub</h3>
+                    <p></p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/isack.chaz.2025?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+                        <a href="aqui el link"><i class="fab fa-twitter"></i></a>
+                        <a href="aqui el link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="aqui el link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#solutions">Soluciones</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Patrocinadores</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.elluc.com/es">Ellucian</a></li>
+                        <li><a href="https://net.com/">Netzun</a></li>
+                        <li><a href="htt">Google</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Información</h3>
+                    <p>¿Te interesa recibir ofertas o recibir noticias de nuestro programa?</p>
+                    <p>Ingresa tu correo para mantenerte informado</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" class="form-control">
+                        <button type="submit" class="btn">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Coursehub. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Textos en diferentes idiomas
+        const translations = {
+            es: {
+                logoText: "Coursehub",
+                courses: "Cursos",
+                allCourses: "Todos los cursos",
+                exactSciences: "Ciencias Exactas",
+                physicsMath: "Ciencias Fisicas y Matematicas",
+                healthSciences: "Ciencias biologicas y de la salud",
+                socialSciences: "Ciencias sociales",
+                humanitiesArts: "Humanidades y Artes",
+                aboutUs: "Nosotros",
+                whoWeAre: "Quiénes somos",
+                missionVision: "Misión/Visión",
+                contactUs: "Contactanos",
+                login: "Iniciar sesión",
+                heroTitle: "Coursehub",
+                heroSubtitle: "Pensando en tu futuro",
+                takeExam: "Presentar Examen",
+                ourCourses: "Nuestros cursos",
+                mathTitle: "Matematicas",
+                mathDesc: "Sientete comodo y a gusto en nuestros cursos matematicos",
+                artsTitle: "Artes",
+                artsDesc: "Sientete libre y expresate en nuestros cursos de artes",
+                coursesTitle: "Mas de 50 cursos gratuitos",
+                coursesDesc: "Estudia y especializate en uno de nuestros mas de 50 cursos gratuitos",
+                watchClass: "Mira una de nuestras clases muestra!",
+                testimonial: "\"No tuve la oportunidad de entrar este año a la universidad pero gracias a Coursehub, no me quedo atras\" - Anonimo",
+                newUsers: "Nuevos usuario",
+                newUsersDesc1: "Mas de 30 usuarios nuevos cada dia",
+                newUsersDesc2: "Cada dia llegamos a mas gente y les ayudamos a cumplir sus metas con nuestros cursos gratuitos.",
+                moreOpportunities: "Mas oportunidades",
+                moreOpportunitiesDesc: "Estudia mas y mejora todas tus oportunidades",
+                supportUs: "Apoyanos",
+                supportUsDesc: "Dale a mas gente la oportunidad de alcanzar sus metas",
+                donate: "Hacer una donación",
+                whoWeAreTitle: "¿Quiénes Somos?",
+                whoWeAreDesc1: "Coursehub nos importa tu futuro",
+                whoWeAreDesc2: "Apoyamos la iniciativa de la educacion gratuita otorgando mas de 50 cursos totalmente gratuitos y con validación universitaria",
+                coursesAvailable: "Cursos disponibles",
+                expertInstructors: "Instructores expertos",
+                knowledgeAreas: "Áreas de conocimiento",
+                visionTitle: "Visión",
+                visionDesc: "Ser la plataforma líder en educación digital, inspirando a millones de personas a alcanzar su máximo potencial a través de experiencias de aprendizaje innovadoras, inclusivas y accesibles para todos.",
+                missionTitle: "Misión",
+                missionDesc: "Democratizar el acceso a la educación de calidad, brindando herramientas, recursos y acompañamiento para que cada persona pueda aprender, crecer y transformar su vida y su entorno.",
+                contactTitle: "Contáctanos",
+                address: "Dirección",
+                phone: "Teléfono",
+                email: "Email",
+                schedule: "Horario",
+                name: "Nombre",
+                subject: "Asunto",
+                message: "Mensaje",
+                sendMessage: "Enviar Mensaje",
+                virtualAssistant: "Asistente Virtual",
+                assistantMessage: "¡Hola! Soy el asistente virtual de Coursehub. ¿En qué puedo ayudarte hoy?",
+                writeMessage: "Escribe tu mensaje...",
+                loginTitle: "Iniciar Sesión",
+                emailPlaceholder: "Correo Electrónico",
+                password: "Contraseña",
+                access: "Acceder",
+                noAccount: "¿No tienes una cuenta?",
+                register: "Regístrate",
+                registerTitle: "Registro",
+                fullName: "Nombre completo",
+                age: "Edad",
+                gender: "Género",
+                selectOption: "Selecciona",
+                male: "Masculino",
+                female: "Femenino",
+                other: "Otro",
+                preferNotSay: "Prefiero no decirlo",
+                state: "Estado",
+                phoneNumber: "Número de teléfono",
+                registerWith: "O regístrate con",
+                alreadyAccount: "¿Ya tienes cuenta?",
+                quickLinks: "Enlaces Rápidos",
+                home: "Inicio",
+                solutions: "Soluciones",
+                about: "Nosotros",
+                contact: "Contacto",
+                sponsors: "Patrocinadores",
+                information: "Información",
+                newsletterDesc1: "¿Te interesa recibir ofertas o recibir noticias de nuestro programa?",
+                newsletterDesc2: "Ingresa tu correo para mantenerte informado",
+                yourEmail: "Tu email",
+                subscribe: "Suscribirse",
+                copyright: "&copy; 2025 Coursehub. Todos los derechos reservados."
+            },
+            en: {
+                logoText: "Coursehub",
+                courses: "Courses",
+                allCourses: "All courses",
+                exactSciences: "Exact Sciences",
+                physicsMath: "Physics and Mathematics",
+                healthSciences: "Health Sciences",
+                socialSciences: "Social Sciences",
+                humanitiesArts: "Humanities and Arts",
+                aboutUs: "About Us",
+                whoWeAre: "Who we are",
+                missionVision: "Mission/Vision",
+                contactUs: "Contact Us",
+                login: "Login",
+                heroTitle: "Coursehub",
+                heroSubtitle: "Thinking about your future",
+                takeExam: "Take Exam",
+                ourCourses: "Our courses",
+                mathTitle: "Mathematics",
+                mathDesc: "Feel comfortable in our math courses",
+                artsTitle: "Arts",
+                artsDesc: "Express yourself freely in our art courses",
+                coursesTitle: "More than 50 free courses",
+                coursesDesc: "Study and specialize in one of our more than 50 free courses",
+                watchClass: "Watch one of our sample classes!",
+                testimonial: "\"I didn't have the opportunity to enter university this year but thanks to Coursehub, I don't fall behind\" - Anonymous",
+                newUsers: "New users",
+                newUsersDesc1: "More than 30 new users every day",
+                newUsersDesc2: "Every day we reach more people and help them achieve their goals with our free courses.",
+                moreOpportunities: "More opportunities",
+                moreOpportunitiesDesc: "Study more and improve all your opportunities",
+                supportUs: "Support Us",
+                supportUsDesc: "Give more people the opportunity to achieve their goals",
+                donate: "Make a donation",
+                whoWeAreTitle: "Who We Are?",
+                whoWeAreDesc1: "Coursehub cares about your future",
+                whoWeAreDesc2: "We support the initiative of free education by offering more than 50 completely free courses with university validation",
+                coursesAvailable: "Courses available",
+                expertInstructors: "Expert instructors",
+                knowledgeAreas: "Knowledge areas",
+                visionTitle: "Vision",
+                visionDesc: "To be the leading digital education platform, inspiring millions of people to reach their full potential through innovative, inclusive and accessible learning experiences for all.",
+                missionTitle: "Mission",
+                missionDesc: "Democratize access to quality education, providing tools, resources and support so that each person can learn, grow and transform their life and their environment.",
+                contactTitle: "Contact Us",
+                address: "Address",
+                phone: "Phone",
+                email: "Email",
+                schedule: "Schedule",
+                name: "Name",
+                subject: "Subject",
+                message: "Message",
+                sendMessage: "Send Message",
+                virtualAssistant: "Virtual Assistant",
+                assistantMessage: "Hello! I'm Coursehub's virtual assistant. How can I help you today?",
+                writeMessage: "Write your message...",
+                loginTitle: "Login",
+                emailPlaceholder: "Email",
+                password: "Password",
+                access: "Access",
+                noAccount: "Don't have an account?",
+                register: "Register",
+                registerTitle: "Register",
+                fullName: "Full name",
+                age: "Age",
+                gender: "Gender",
+                selectOption: "Select",
+                male: "Male",
+                female: "Female",
+                other: "Other",
+                preferNotSay: "Prefer not to say",
+                state: "State",
+                phoneNumber: "Phone number",
+                registerWith: "Or register with",
+                alreadyAccount: "Already have an account?",
+                quickLinks: "Quick Links",
+                home: "Home",
+                solutions: "Solutions",
+                about: "About",
+                contact: "Contact",
+                sponsors: "Sponsors",
+                information: "Information",
+                newsletterDesc1: "Are you interested in receiving offers or news about our program?",
+                newsletterDesc2: "Enter your email to stay informed",
+                yourEmail: "Your email",
+                subscribe: "Subscribe",
+                copyright: "&copy; 2025 Coursehub. All rights reserved."
+            }
+        };
+
+        // Función para cambiar el idioma
+           function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    // Manejo especial para el enlace de registro
+                    if (element.id === 'showRegister') {
+                        return; // Lo manejamos aparte
+                    }
+                    element.textContent = translations[lang][key];
+                }
+            });
+             // Manejo especial para el texto del enlace de registro
+            const noAccountText = translations[lang]['noAccount'];
+            const registerText = translations[lang]['register'];
+            const modalFooter = document.querySelector('#loginModal .modal-footer p');
+            modalFooter.innerHTML = `${noAccountText} <a href="#" id="showRegister">${registerText}</a>`;
+            
+            // Re-asignar el event listener al enlace de registro
+            document.getElementById('showRegister').addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.classList.remove('show');
+                registerModal.classList.add('show');
+            });
+
+            // Actualizar placeholders
+            const placeholders = document.querySelectorAll('[data-placeholder]');
+            placeholders.forEach(element => {
+                const key = element.getAttribute('data-placeholder');
+                if (translations[lang][key]) {
+                    element.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+
+            // Actualizar valores de opciones
+            const options = document.querySelectorAll('[data-option]');
+            options.forEach(element => {
+                const key = element.getAttribute('data-option');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Actualizar atributos title y alt
+            const titles = document.querySelectorAll('[data-title]');
+            titles.forEach(element => {
+                const key = element.getAttribute('data-title');
+                if (translations[lang][key]) {
+                    element.setAttribute('title', translations[lang][key]);
+                }
+            });
+
+            const alts = document.querySelectorAll('[data-alt]');
+            alts.forEach(element => {
+                const key = element.getAttribute('data-alt');
+                if (translations[lang][key]) {
+                    element.setAttribute('alt', translations[lang][key]);
+                }
+            });
+
+            // Actualizar el chatbot
+            const chatbotMessage = document.querySelector('.bot-message');
+            if (chatbotMessage) {
+                chatbotMessage.textContent = translations[lang]['assistantMessage'];
+            }
+
+            const userInput = document.getElementById('userInput');
+            if (userInput) {
+                userInput.setAttribute('placeholder', translations[lang]['writeMessage']);
+            }
+        }
+
+        // Selector de idioma
+        const languageSelector = document.getElementById('languageSelector');
+        languageSelector.addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        // Accesibilidad - Lectura de texto
+        const readPageBtn = document.getElementById('readPageBtn');
+        const stopReadingBtn = document.getElementById('stopReadingBtn');
+        let speechSynthesis = window.speechSynthesis;
+        let utterance = null;
+
+        function readText(text) {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+            
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = languageSelector.value === 'es' ? 'es-ES' : 'en-US';
+            utterance.rate = 0.9;
+            
+            speechSynthesis.speak(utterance);
+            
+            utterance.onend = function() {
+                readPageBtn.style.display = 'flex';
+                stopReadingBtn.style.display = 'none';
+            };
+        }
+
+        function readPageContent() {
+            const mainContent = document.querySelector('main');
+            const textToRead = mainContent.innerText.replace(/\s+/g, ' ').trim();
+            
+            readPageBtn.style.display = 'none';
+            stopReadingBtn.style.display = 'flex';
+            
+            readText(textToRead);
+        }
+
+        function stopReading() {
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+            }
+            readPageBtn.style.display = 'flex';
+            stopReadingBtn.style.display = 'none';
+        }
+
+        readPageBtn.addEventListener('click', readPageContent);
+        stopReadingBtn.addEventListener('click', stopReading);
+
+        // menu movil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Efecto de scroll en el header
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Slider
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const sliderDots = document.getElementById('sliderDots');
+        const slides = document.querySelectorAll('.slide');
+
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        let slideInterval;
+
+        // Crear puntos
+        function createDots() {
+            sliderDots.innerHTML = '';
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('span');
+                dot.addEventListener('click', () => goToSlide(index));
+                sliderDots.appendChild(dot);
+            });
+            updateDots();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.slider-dots span');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetInterval();
+        }
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateDots();
+        }
+
+        function resetInterval() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Event listeners para los botones de navegación y el mouse
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+
+        // Iniciar el slider
+        createDots();
+        startAutoSlide();
+
+        // Chatbot
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+            // Preguntas y respuestas predeterminadas para el chatbot (FAQ)
+            const faqPairs = [
+                {
+                    q: '¿De qué trata el examen?',
+                    a: 'El botón de presentar examen te mandará a una de nuestras páginas en la cual una IA te hará preguntas para poderte ayudar a elegir uno de los cursos respecto a tus respuestas.'
+                },
+                {
+                    q: '¿Qué servicios ofrecen aquí?',
+                    a: 'Evaluación vocacional gratuita, cursos de aprendizaje de distintas áreas y certificaciones válidas por universidades.'
+                },
+                {
+                    q: '¿Es gratis o tiene costo?',
+                    a: 'Principalmente nuestros cursos y nuestro examen de orientación están disponibles para todo público sin costo alguno, pero cursos más avanzados tienen cierto costo e incluyen certificación.'
+                }
+            ];
+
+            // Agregar botones de preguntas predeterminadas al chatbot
+            function renderFAQButtons() {
+                const faqDiv = document.createElement('div');
+                faqDiv.style.display = 'flex';
+                faqDiv.style.flexDirection = 'column';
+                faqDiv.style.gap = '8px';
+                faqDiv.style.marginBottom = '10px';
+                faqDiv.id = 'faq-buttons';
+                faqPairs.forEach((pair) => {
+                    const btn = document.createElement('button');
+                    btn.textContent = pair.q;
+                    btn.className = 'btn';
+                    btn.style.background = '#3498db';
+                    btn.style.color = 'white';
+                    btn.style.fontSize = '0.95em';
+                    btn.style.borderRadius = '20px';
+                    btn.style.padding = '7px 16px';
+                    btn.style.border = 'none';
+                    btn.style.cursor = 'pointer';
+                    btn.style.transition = 'background 0.2s';
+                    btn.onmouseover = () => btn.style.background = '#217dbb';
+                    btn.onmouseout = () => btn.style.background = '#3498db';
+                    btn.onclick = () => {
+                        addMessage(pair.q, true);
+                        setTimeout(() => addMessage(pair.a, false), 600);
+                    };
+                    faqDiv.appendChild(btn);
+                });
+                chatbotMessages.insertBefore(faqDiv, chatbotMessages.firstChild.nextSibling);
+            }
+
+            // Llamar a la función al abrir el chatbot
+            chatbotBtn.addEventListener('click', () => {
+                chatbotWindow.style.display = 'flex';
+                // Evitar duplicados
+                if (!document.getElementById('faq-buttons')) {
+                    renderFAQButtons();
+                }
+            });
+
+        //  Chatbot
+        const userInput = document.getElementById('userInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+
+        function addMessage(message, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageDiv.textContent = message;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function handleUserMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                userInput.value = '';
+
+                // Simple bot
+                setTimeout(() => {
+                    let botResponse;
+                    const lang = languageSelector.value;
+                    
+                    if (message.toLowerCase().includes('hola') || message.toLowerCase().includes('buenos días') || message.toLowerCase().includes('buenas tardes') || 
+                        message.toLowerCase().includes('hello') || message.toLowerCase().includes('good morning') || message.toLowerCase().includes('good afternoon')) {
+                        botResponse = lang === 'es' ? 
+                            "¡Hola! ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre nuestros cursos o cómo registrarte." : 
+                            "Hello! How can I help you today? You can ask me about our courses or how to register.";
+                    } else if (message.toLowerCase().includes('precio') || message.toLowerCase().includes('coste') || message.toLowerCase().includes('costos') || 
+                               message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
+                        botResponse = lang === 'es' ? 
+                            "Todos nuestros cursos son completamente gratuitos. No hay costos asociados." : 
+                            "All our courses are completely free. There are no associated costs.";
+                    } else if (message.toLowerCase().includes('contacto') || message.toLowerCase().includes('hablar') || message.toLowerCase().includes('asesor') || 
+                               message.toLowerCase().includes('contact') || message.toLowerCase().includes('talk') || message.toLowerCase().includes('advisor')) {
+                        botResponse = lang === 'es' ? 
+                            "Puedes contactar a nuestro equipo al (+52)2225231294 o enviar un correo a isackchazari@gmail.com. También puedes completar el formulario de contacto en nuestra página web." : 
+                            "You can contact our team at (+52)2225231294 or send an email to isackchazari@gmail.com. You can also complete the contact form on our website.";
+                    } else if (message.toLowerCase().includes('gracias') || message.toLowerCase().includes('agradecido') || 
+                               message.toLowerCase().includes('thank you') || message.toLowerCase().includes('thanks')) {
+                        botResponse = lang === 'es' ? 
+                            "¡De nada! Estoy aquí para ayudar. ¿Hay algo más en lo que pueda asistirte?" : 
+                            "You're welcome! I'm here to help. Is there anything else I can assist you with?";
+                    } else {
+                        botResponse = lang === 'es' ? 
+                            "Gracias por tu mensaje. Un miembro de nuestro equipo te responderá pronto. Mientras tanto, ¿hay algo más en lo que pueda ayudarte?" : 
+                            "Thank you for your message. A member of our team will respond to you soon. In the meantime, is there anything else I can help you with?";
+                    }
+                    addMessage(botResponse, false);
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', handleUserMessage);
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleUserMessage();
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // mensaje d q el formulario se envio
+            const lang = languageSelector.value;
+            const message = lang === 'es' ? 
+                'Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.' : 
+                'Thank you for your message. We will contact you soon.';
+            alert(message);
+            contactForm.reset();
+        });
+
+        // Modal de Login y Registro
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const showRegister = document.getElementById('showRegister');
+        const registerModal = document.getElementById('registerModal');
+        const closeRegisterBtn = document.getElementById('closeRegisterBtn');
+        const showLogin = document.getElementById('showLogin');
+
+        // Mostrar login
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('show');
+        });
+
+        // Cerrar login
+        closeModalBtn.addEventListener('click', () => {
+            loginModal.classList.remove('show');
+        });
+
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+            }
+        });
+
+        // Mostrar registro
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('show');
+            registerModal.classList.add('show');
+        });
+
+        // Cerrar registro
+        closeRegisterBtn.addEventListener('click', () => {
+            registerModal.classList.remove('show');
+        });
+
+        registerModal.addEventListener('click', (e) => {
+            if (e.target === registerModal) {
+                registerModal.classList.remove('show');
+            }
+        });
+
+        // Volver a login desde registro
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('show');
+            loginModal.classList.add('show');
+        });
+
+        // Registro (solo muestra alerta, no envía datos)
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+ // e.preventDefault(); // Comentado para permitir el envío tradicional
+            const lang = languageSelector.value;
+            const message = lang === 'es' ? 
+                '¡Registro exitoso! Ahora puedes iniciar sesión.' : 
+                'Successful registration! You can now log in.';
+            alert(message);
+            registerModal.classList.remove('show');
+        });
+
+        // Añadir atributos data-translate a los elementos que necesitan traducción
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logo
+            document.querySelector('.logo-text').setAttribute('data-translate', 'logoText');
+            
+            // Menú
+            document.querySelector('.nav-text').setAttribute('data-translate', 'courses');
+            document.querySelectorAll('.dropdown-content a')[0].setAttribute('data-translate', 'allCourses');
+            document.querySelectorAll('.dropdown-content a')[1].setAttribute('data-translate', 'exactSciences');
+            document.querySelectorAll('.dropdown-content a')[2].setAttribute('data-translate', 'physicsMath');
+            document.querySelectorAll('.dropdown-content a')[3].setAttribute('data-translate', 'healthSciences');
+            document.querySelectorAll('.dropdown-content a')[4].setAttribute('data-translate', 'socialSciences');
+            document.querySelectorAll('.dropdown-content a')[5].setAttribute('data-translate', 'humanitiesArts');
+            document.querySelectorAll('.nav-text')[1].setAttribute('data-translate', 'aboutUs');
+            document.querySelectorAll('.dropdown-content a')[6].setAttribute('data-translate', 'whoWeAre');
+            document.querySelectorAll('.dropdown-content a')[7].setAttribute('data-translate', 'missionVision');
+            document.querySelectorAll('.dropdown-content a')[8].setAttribute('data-translate', 'contactUs');
+            document.getElementById('loginBtn').setAttribute('data-title', 'login');
+            
+            // Hero section
+            document.querySelector('.hero-title').setAttribute('data-translate', 'heroTitle');
+            document.querySelector('.hero-subtitle').setAttribute('data-translate', 'heroSubtitle');
+            document.querySelector('.btn').setAttribute('data-translate', 'takeExam');
+            
+            // Slider section
+            document.querySelector('.section-title h2').setAttribute('data-translate', 'ourCourses');
+            document.querySelectorAll('.slide-content h3')[0].setAttribute('data-translate', 'mathTitle');
+            document.querySelectorAll('.slide-content p')[0].setAttribute('data-translate', 'mathDesc');
+            document.querySelectorAll('.slide-content h3')[1].setAttribute('data-translate', 'artsTitle');
+            document.querySelectorAll('.slide-content p')[1].setAttribute('data-translate', 'artsDesc');
+            document.querySelectorAll('.slide-content h3')[2].setAttribute('data-translate', 'coursesTitle');
+            document.querySelectorAll('.slide-content p')[2].setAttribute('data-translate', 'coursesDesc');
+            
+            // Video section
+            document.querySelector('.video-section h2').setAttribute('data-translate', 'watchClass');
+            
+            // Features section
+            document.querySelector('.section-title h3').setAttribute('data-translate', 'testimonial');
+            document.querySelectorAll('.feature-content h3')[0].setAttribute('data-translate', 'newUsers');
+            document.querySelectorAll('.feature-content p')[0].setAttribute('data-translate', 'newUsersDesc1');
+            document.querySelectorAll('.feature-content p')[1].setAttribute('data-translate', 'newUsersDesc2');
+            document.querySelectorAll('.feature-content h3')[1].setAttribute('data-translate', 'moreOpportunities');
+            document.querySelectorAll('.feature-content p')[2].setAttribute('data-translate', 'moreOpportunitiesDesc');
+            document.querySelectorAll('.feature-content h3')[2].setAttribute('data-translate', 'supportUs');
+            document.querySelectorAll('.feature-content p')[3].setAttribute('data-translate', 'supportUsDesc');
+            document.querySelectorAll('.btn')[1].setAttribute('data-translate', 'donate');
+            
+            // About section
+            document.querySelector('.about-content h2').setAttribute('data-translate', 'whoWeAreTitle');
+            document.querySelectorAll('.about-content p')[0].setAttribute('data-translate', 'whoWeAreDesc1');
+            document.querySelectorAll('.about-content p')[1].setAttribute('data-translate', 'whoWeAreDesc2');
+            document.querySelectorAll('.stat-text')[0].setAttribute('data-translate', 'coursesAvailable');
+            document.querySelectorAll('.stat-text')[1].setAttribute('data-translate', 'expertInstructors');
+            document.querySelectorAll('.stat-text')[2].setAttribute('data-translate', 'knowledgeAreas');
+            
+            // Vision section
+            document.querySelectorAll('.vm-content h2')[0].setAttribute('data-translate', 'visionTitle');
+            document.querySelectorAll('.vm-content p')[0].setAttribute('data-translate', 'visionDesc');
+            
+            // Mission section
+            document.querySelectorAll('.vm-content h2')[1].setAttribute('data-translate', 'missionTitle');
+            document.querySelectorAll('.vm-content p')[1].setAttribute('data-translate', 'missionDesc');
+            
+            // Contact section
+            document.querySelector('.contact .section-title h2').setAttribute('data-translate', 'contactTitle');
+            document.querySelectorAll('.contact-text h3')[0].setAttribute('data-translate', 'address');
+            document.querySelectorAll('.contact-text h3')[1].setAttribute('data-translate', 'phone');
+            document.querySelectorAll('.contact-text h3')[2].setAttribute('data-translate', 'email');
+            document.querySelectorAll('.contact-text h3')[3].setAttribute('data-translate', 'schedule');
+            document.querySelector('#name').setAttribute('data-placeholder', 'name');
+            document.querySelector('#email').setAttribute('data-placeholder', 'emailPlaceholder');
+            document.querySelector('#subject').setAttribute('data-placeholder', 'subject');
+            document.querySelector('#message').setAttribute('data-placeholder', 'message');
+            document.querySelector('.contact-form .btn').setAttribute('data-translate', 'sendMessage');
+            
+            // Login modal
+            document.querySelector('#loginModal .modal-header h2').setAttribute('data-translate', 'loginTitle');
+            document.querySelector('#loginEmail').setAttribute('data-placeholder', 'emailPlaceholder');
+            document.querySelector('#loginPassword').setAttribute('data-placeholder', 'password');
+            document.querySelector('#loginModal .btn').setAttribute('data-translate', 'access');
+            document.querySelector('#loginModal .modal-footer p').setAttribute('data-translate', 'noAccount');
+            document.querySelector('#showRegister').setAttribute('data-translate', 'register');
+            
+            // Register modal
+            document.querySelector('#registerModal .modal-header h2').setAttribute('data-translate', 'registerTitle');
+            document.querySelector('#regName').setAttribute('data-placeholder', 'fullName');
+            document.querySelector('#regEmail').setAttribute('data-placeholder', 'emailPlaceholder');
+            document.querySelector('#regAge').setAttribute('data-placeholder', 'age');
+            document.querySelector('#regGender').setAttribute('data-placeholder', 'gender');
+            document.querySelector('#regGender option[value=""]').setAttribute('data-option', 'selectOption');
+            document.querySelector('#regGender option[value="Masculino"]').setAttribute('data-option', 'male');
+            document.querySelector('#regGender option[value="Femenino"]').setAttribute('data-option', 'female');
+            document.querySelector('#regGender option[value="Otro"]').setAttribute('data-option', 'other');
+            document.querySelector('#regGender option[value="Prefiero no decirlo"]').setAttribute('data-option', 'preferNotSay');
+            document.querySelector('#regState').setAttribute('data-placeholder', 'state');
+            document.querySelector('#regPhone').setAttribute('data-placeholder', 'phoneNumber');
+            document.querySelector('#registerModal .btn').setAttribute('data-translate', 'register');
+            document.querySelector('#registerModal .modal-footer p').setAttribute('data-translate', 'alreadyAccount');
+            document.querySelector('#showLogin').setAttribute('data-translate', 'login');
+            
+            // Footer
+            document.querySelectorAll('.footer-col h3')[1].setAttribute('data-translate', 'quickLinks');
+            document.querySelectorAll('.footer-links a')[0].setAttribute('data-translate', 'home');
+            document.querySelectorAll('.footer-links a')[1].setAttribute('data-translate', 'solutions');
+            document.querySelectorAll('.footer-links a')[2].setAttribute('data-translate', 'about');
+            document.querySelectorAll('.footer-links a')[3].setAttribute('data-translate', 'contact');
+            document.querySelectorAll('.footer-col h3')[2].setAttribute('data-translate', 'sponsors');
+            document.querySelectorAll('.footer-col h3')[3].setAttribute('data-translate', 'information');
+            document.querySelectorAll('.footer-col p')[2].setAttribute('data-translate', 'newsletterDesc1');
+            document.querySelectorAll('.footer-col p')[3].setAttribute('data-translate', 'newsletterDesc2');
+            document.querySelector('.newsletter-form input').setAttribute('data-placeholder', 'yourEmail');
+            document.querySelector('.newsletter-form .btn').setAttribute('data-translate', 'subscribe');
+            document.querySelector('.footer-bottom p').setAttribute('data-translate', 'copyright');
+                 // Inicializar el enlace de registro
+            const showRegister = document.getElementById('showRegister');
+            if (showRegister) {
+                showRegister.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loginModal.classList.remove('show');
+                    registerModal.classList.add('show');
+                });
+            }
+
+            // Establecer el idioma inicial
+            changeLanguage('es');
+        });
+    </script>
+</body>
+</html>

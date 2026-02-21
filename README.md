@@ -1,2 +1,1 @@
-# Course-Hub
-Proyecto hackaton
+# hackaton

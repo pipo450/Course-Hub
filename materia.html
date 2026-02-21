@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Materia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{--primary:#2c3e50;--secondary:#3498db;--accent:#e74c3c;--light:#ecf0f1;--dark:#2c3e50;--text:#333;--text-light:#7f8c8d}*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}body{color:var(--text);line-height:1.6}header{background-color:var(--primary);color:#fff;padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.1)}.container{width:90%;max-width:1200px;margin:0 auto}.header-container{display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.8rem;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center}.logo i{margin-right:10px;color:var(--secondary)}nav ul{display:flex;list-style:none}nav ul li{margin-left:2rem}nav ul li a{color:#fff;text-decoration:none;font-weight:500;transition:color .3s;position:relative}nav ul li a:hover{color:var(--secondary)}.btn{display:inline-block;background:var(--secondary);color:#fff;padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;transition:all .3s;border:none;cursor:pointer}
+        /* Estilos para la página de detalle */
+        .materia-header {
+            padding-top: 120px; /* Espacio para el header fijo */
+            padding-bottom: 4rem;
+            background: var(--light);
+            text-align: center;
+        }
+        .materia-header h1 {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        .materia-contenido {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        .materia-info img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .materia-info h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        .materia-sidebar {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .materia-sidebar h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .materia-sidebar ul {
+            list-style: none;
+        }
+        .materia-sidebar ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <a href="cursos.html" class="logo"><i class="fas fa-graduation-cap"></i> Coursehub</a>
+            <nav id="nav">
+                <ul>
+                    <li><a href="cursos.html#cursos">Volver a Cursos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="materia-detalle">
+        <section class="materia-header">
+            <div class="container">
+                <h1 id="materia-titulo">Cargando materia...</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="materia-contenido">
+                <div class="materia-info">
+                    <img id="materia-img" src="" alt="Imagen de la materia">
+                    <h2>Descripción</h2>
+                    <p id="materia-descripcion"></p>
+                </div>
+                <aside class="materia-sidebar">
+                    <h3>Temario del Curso</h3>
+                    <ul id="materia-temas">
+                        </ul>
+                    <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 1rem;">Inscribirme</a>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <script src="scripts.js" defer></script>
+</body>
+</html>
