@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // PASO CRÍTICO: PEGA TU CLAVE AQUÍ ABAJO ENTRE LAS COMILLAS
 // (La que empieza con AIzaSy...)
 // ---------------------------------------------------------
-const API_KEY = "AIzaSyAewd0uq0FguYN5EVFLyAK2WmYHlmU11pw"; 
+const API_KEY = "*tu clave API*"; 
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
@@ -67,4 +67,5 @@ app.post("/api/chat", async (req, res) => {
 });
 
 const PORT = 3000;
+
 app.listen(PORT, () => console.log(`🚀 Servidor LISTO en http://localhost:${PORT}`));
